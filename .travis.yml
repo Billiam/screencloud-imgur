@@ -1,0 +1,18 @@
+language: generic
+os:
+- linux
+script:
+- make
+after_success:
+- mv current.zip $TRAVIS_TAG.zip
+
+deploy:
+  provider: releases
+  api_key:
+    secure: JU2BL0yEA5NFJKcRpeSSYfWBk4Mtom7WmRdBpsPsucQmvvR/G0UX/3kbFtD5ePebR4ooIjkZHymoKa9EoX7aMag/es54SiUaBxx2GnaPXyHWPGRABXazgfgq65WA3uwnoSgDyiwMYedRgjhom8rbux8Vx+gtxJXA9wfpmkKyOEdkcHRsaihJitD5ngXiezWIXjEz5yRJWez/luen6o+ZHZi9os6IlknGiE5O17JEs8Bcvx8+DN44e8UBUAqitoqse8MKLsl9/7GVAguShMQQ/N/il0MYpwM0rNgyzeDqK+6V2LsK+YbBcbcrul8f0n1WP9jZU9mdAcAmb440Tyrfigi+kiWZmVwxEOLQUcWOWKfAxVzwTSIse8/apT/fCACEdgrowp11aYUkmhqoqkPlxK9ILrhJTV8odvSemXRvytLM11niBJHExOGG3Drd9ljRpxjUeRtzHI+q1MQ2d7I0PraqfgNz/f53aVNPf7JhLLB7iThXMwtUZy8tala3wdxIgKlc6/6rTv4T6UzQFoeT1iVyyyiWzAdu6oqGkgVLi4F4Mb0jVn8nqSDHesYu/1eXvMp/KwuI3tidhrRCTHGVNUGbT7r6aqIeGvKx3krZekzBotuu66K08JgQlp0UI0nDpipueXpCZSwzEMfYxAtR+GNFFoJ7ANXx6tLdLMix5n0=
+  file_glob: true
+  file: ./*.zip
+  skip_cleanup: true
+  on:
+    repo: olav-st/screencloud-imgur
+    tags: true
