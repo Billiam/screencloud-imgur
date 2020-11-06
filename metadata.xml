@@ -1,6 +1,6 @@
 <metadata>
-	<name>Imgur</name>
-	<shortname>imgur</shortname>
+	<name>AlbumImgur</name>
+	<shortname>albumimgur</shortname>
 	<className>ImgurUploader</className>
 	<icon>icon.png</icon>
 	<version>1.10</version>

@@ -43,6 +43,7 @@ class ImgurUploader():
 			self.settingsDialog.group_clipboard.radio_imgur.setChecked(True)
 		self.settingsDialog.group_account.radio_anon.setChecked(self.uploadAnon)
 		self.settingsDialog.group_name.input_name.setText(self.nameFormat)
+		self.settingsDialog.group_album.input_album.setText(self.album)
 		self.settingsDialog.adjustSize()
 
 	def loadSettings(self):
@@ -56,6 +57,7 @@ class ImgurUploader():
 		self.refresh_token = settings.value("refresh-token", "")
 		self.nameFormat = settings.value("name-format", "Screenshot at %H:%M:%S")
 		self.username = settings.value("username", "")
+		self.album = settings.value("album", "")
 		settings.endGroup()
 		settings.endGroup()
 		if self.uploadAnon:
@@ -73,6 +75,7 @@ class ImgurUploader():
 		settings.setValue("access-token", self.access_token)
 		settings.setValue("refresh-token", self.refresh_token)
 		settings.setValue("name-format", self.settingsDialog.group_name.input_name.text)
+		settings.setValue("album", self.settingsDialog.group_album.input_album.text)
 		settings.setValue("username", self.username)
 		settings.endGroup()
 		settings.endGroup()
@@ -107,7 +110,7 @@ class ImgurUploader():
 		screenshot.save(QFile(tmpFilename), ScreenCloud.getScreenshotFormat())
 		#Upload!
 		try:
-			uploaded_image = self.imgur.upload_image(tmpFilename, title=ScreenCloud.formatFilename(name, False))
+			uploaded_image = self.imgur.upload_image(tmpFilename, title=ScreenCloud.formatFilename(name, False), album=self.album)
 		except Exception as e:
 			ScreenCloud.setError("Failed to upload to imgur. " + e.message)
 			return False
@@ -151,3 +154,6 @@ class ImgurUploader():
 
 	def nameFormatEdited(self, nameFormat):
 		self.settingsDialog.group_name.label_example.setText(ScreenCloud.formatFilename(nameFormat, False))
+
+
+

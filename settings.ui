@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>231</width>
-    <height>402</height>
+    <height>432</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -81,6 +81,18 @@
        </widget>
       </item>
      </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="group_album">
+      <property name="title">
+        <string>Album</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+          <widget class="QLineEdit" name="input_album"/>
+        </item>
+      </layout>
     </widget>
    </item>
    <item>
